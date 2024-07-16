@@ -4,3 +4,4 @@
 ## Project List
 - Aplikasi Mobile (Input Name)
 - Aplikasi Kalkulator
+- Aplikasi LatihanStorage
