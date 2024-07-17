@@ -13,3 +13,6 @@
 ### Sesi 9 - Proyek Aplikasi Data Persistence 
 - Aplikasi Catatan (Proyek1)
 - Aplikasi Validasi Login (Proyek2)
+
+### Sesi 10 - Latihan Database (SQLite)
+- Aplikasi MyLibrary
