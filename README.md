@@ -6,3 +6,4 @@
 - Aplikasi Kalkulator
 - Aplikasi LatihanStorage
 - Aplikasi Catatan (Proyek1)
+- Aplikasi Validasi Login (Proyek2)
