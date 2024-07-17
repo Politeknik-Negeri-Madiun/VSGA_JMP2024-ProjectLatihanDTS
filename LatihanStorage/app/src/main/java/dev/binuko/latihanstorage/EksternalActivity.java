@@ -4,6 +4,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -106,12 +107,14 @@ public class EksternalActivity extends AppCompatActivity {
     }
 
     void buatFile() {
-        String isiFile = "Swa Bhuwana Paksa!";
+        String isiFile = "Isi konten default file external storage!";
         String state = Environment.getExternalStorageState();
 
         if (!Environment.MEDIA_MOUNTED.equals(state)) return;
 
-        File file = new File(Environment.getExternalStorageDirectory(), FILENAME);
+        File extstorage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+
+        File file = new File(extstorage, FILENAME);
 
         //isi file akan ditambah (karena append: true)
         try(FileOutputStream fos = new FileOutputStream(file, true)) {
@@ -124,12 +127,12 @@ public class EksternalActivity extends AppCompatActivity {
     }
 
     void ubahFile() {
-        String ubah = "Jalesveva Jayamahe!";
+        String ubah = "Isi diubah menjadi Selamat Datang di DTS Kominfo 2024!";
         String state = Environment.getExternalStorageState();
 
         if (!Environment.MEDIA_MOUNTED.equals(state)) return;
 
-        File file = new File(Environment.getExternalStorageDirectory(), FILENAME);
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), FILENAME);
 
         //isi file dibuat baru (karena append: false)
         try (FileOutputStream fos = new FileOutputStream(file, false)){
@@ -141,7 +144,7 @@ public class EksternalActivity extends AppCompatActivity {
     }
 
     public void bacaFile() {
-        File sdcard = Environment.getExternalStorageDirectory();
+        File sdcard = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
         File file = new File(sdcard, FILENAME);
 
         if (file.exists()) {
@@ -167,7 +170,7 @@ public class EksternalActivity extends AppCompatActivity {
     }
 
     void hapusFile() {
-        File file = new File(Environment.getExternalStorageDirectory(), FILENAME);
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), FILENAME);
         if (file.exists() && file.delete())
             tvBaca.setText("");
     }

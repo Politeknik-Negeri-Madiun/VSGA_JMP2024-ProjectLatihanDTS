@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId = "dev.binuko.latihanstorage"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
 
