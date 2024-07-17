@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="PROYEK 2"
+            android:text="PROYEK 3"
             android:textColor="#000"
             android:textSize="30sp"
             tools:ignore="HardcodedText" />
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Aplikasi Validasi Login"
+            android:text="Aplikasi SQLite"
             android:textColor="#000"
             android:textSize="30sp"
             tools:ignore="HardcodedText" />

@@ -16,3 +16,6 @@
 
 ### Sesi 10 - Latihan Database (SQLite)
 - Aplikasi MyLibrary
+
+### Sesi 11 - Proyek Aplikasi Database (SQLite)
+- Aplikasi SQLite
