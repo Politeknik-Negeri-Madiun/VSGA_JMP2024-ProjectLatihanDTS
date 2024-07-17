@@ -5,3 +5,4 @@
 - Aplikasi Mobile (Input Name)
 - Aplikasi Kalkulator
 - Aplikasi LatihanStorage
+- Aplikasi Catatan (Proyek1)

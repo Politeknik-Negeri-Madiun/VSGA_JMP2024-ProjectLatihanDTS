@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
+
 public class EksternalActivity extends AppCompatActivity {
     public static final String FILENAME = "fileExternalStorage.txt";
     public static final int REQUEST_CODE_STORAGE = 100;
@@ -29,6 +30,7 @@ public class EksternalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eksternal);
 
+        //views to object
         Button btBuatFile = findViewById(R.id.bt_buat_file);
         Button btUbahFile = findViewById(R.id.bt_ubah_file);
         Button btBacaFile = findViewById(R.id.bt_baca_file);
@@ -36,6 +38,7 @@ public class EksternalActivity extends AppCompatActivity {
 
         tvBaca = findViewById(R.id.tv_baca);
 
+        //event handler with lambda
         btBuatFile.setOnClickListener(v -> {
             if (periksaIzinPenyimpanan()) {
                 event = R.id.bt_buat_file;
@@ -62,6 +65,7 @@ public class EksternalActivity extends AppCompatActivity {
     }
 
     public boolean periksaIzinPenyimpanan() {
+
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 return true;
@@ -85,14 +89,19 @@ public class EksternalActivity extends AppCompatActivity {
     }
 
     private void izinGranted(int event) {
-        if (event == R.id.bt_buat_file) {
-            buatFile();
-        } else if (event == R.id.bt_ubah_file) {
-            ubahFile();
-        } else if (event == R.id.bt_baca_file) {
-            bacaFile();
-        } else if (event == R.id.bt_hapus_file) {
-            hapusFile();
+        switch (event) {
+            case R.id.bt_buat_file:
+                buatFile();
+                break;
+            case R.id.bt_ubah_file:
+                ubahFile();
+                break;
+            case R.id.bt_baca_file:
+                bacaFile();
+                break;
+            case R.id.bt_hapus_file:
+                hapusFile();
+                break;
         }
     }
 
@@ -104,9 +113,10 @@ public class EksternalActivity extends AppCompatActivity {
 
         File file = new File(Environment.getExternalStorageDirectory(), FILENAME);
 
+        //isi file akan ditambah (karena append: true)
         try(FileOutputStream fos = new FileOutputStream(file, true)) {
             fos.write(isiFile.getBytes());
-            fos.write(lineSeparator.getBytes());
+            fos.write(lineSeparator.getBytes()); //tambahkan line separator
             fos.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,6 +131,7 @@ public class EksternalActivity extends AppCompatActivity {
 
         File file = new File(Environment.getExternalStorageDirectory(), FILENAME);
 
+        //isi file dibuat baru (karena append: false)
         try (FileOutputStream fos = new FileOutputStream(file, false)){
             fos.write(ubah.getBytes());
             fos.flush();
@@ -142,7 +153,7 @@ public class EksternalActivity extends AppCompatActivity {
 
                 while (line != null) {
                     text.append(line);
-                    text.append("\r\n");
+                    text.append("\r\n"); //tambahkan baris baru
                     line = br.readLine();
                 }
                 br.close();
