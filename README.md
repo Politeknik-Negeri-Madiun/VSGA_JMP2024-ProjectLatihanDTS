@@ -2,8 +2,14 @@
 [![N|Solid](https://pnm.ac.id/assets/img/top-logo.png)](https://ti.pnm.ac.id/)
 
 ## Project List
-- Aplikasi Mobile (Input Name)
+### Sesi 7 - Aplikasi Sederhana
+- Aplikasi Mobile (Input Name) 
 - Aplikasi Kalkulator
+- Aplikasi ListView (List Negara)
+
+### Sesi 8 - Latihan Data Storage
 - Aplikasi LatihanStorage
+
+### Sesi 9 - Proyek Aplikasi Data Persistence 
 - Aplikasi Catatan (Proyek1)
 - Aplikasi Validasi Login (Proyek2)

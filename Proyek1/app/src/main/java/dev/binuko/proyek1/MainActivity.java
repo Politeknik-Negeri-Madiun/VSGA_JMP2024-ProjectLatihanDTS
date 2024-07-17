@@ -28,6 +28,8 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_STORAGE = 100;
     private ListView listView;
+    // set directory path for saving file
+    String pathDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/vsgaproyek1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,8 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     void showListFiles() {
-        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/vsgaproyek1";
-        File directory = new File(path);
+        File directory = new File(pathDir);
 
         if (directory.exists()) {
             File[] files = directory.listFiles();
@@ -162,8 +163,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void hapusFile(String filename) {
-        String path = Environment.getExternalStorageDirectory().toString() + "/kominfo.proyek1";
-        File file = new File(path, filename);
+        File file = new File(pathDir, filename);
         if (file.exists() && file.delete())
             System.out.println("file telah dihapus");
 
