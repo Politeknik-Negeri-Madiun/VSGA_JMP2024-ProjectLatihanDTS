@@ -30,7 +30,8 @@ public class InsertAndViewActivity extends AppCompatActivity {
     private EditText etContent;
     //boolean isEditable = false;
     private String tempCatatan = "";
-
+    //set directory path for saving file
+    private String pathDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString() + "/vsgaproyek1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +57,7 @@ public class InsertAndViewActivity extends AppCompatActivity {
         btSimpan.setOnClickListener(v -> {
             eventID = 2;
             if (!tempCatatan.equals(etContent.getText().toString())) {
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (periksaIzinPenyimpanan()) {
-                        tampilSaveDialog();
-                    }
-                } else {
-                    tampilSaveDialog();
-                }
+                checkPermissionsAndExecute(this::tampilSaveDialog);
             }
         });
 
@@ -115,8 +110,7 @@ public class InsertAndViewActivity extends AppCompatActivity {
 
 
     void bacaFile() {
-        String path = Environment.getExternalStorageDirectory().toString() + "/kominfo.proyek1";
-        File file = new File(path, etFileName.getText().toString());
+        File file = new File(pathDir, etFileName.getText().toString());
         if (file.exists()) {
 
             StringBuilder text = new StringBuilder();
@@ -146,34 +140,16 @@ public class InsertAndViewActivity extends AppCompatActivity {
             return;
         }
 
-        String path = Environment.getExternalStorageDirectory().toString() + "/kominfo.proyek1";
-        File parent = new File(path);
-
-        if (parent.exists()) {
-            File file = new File(path, etFileName.getText().toString());
-
-            try (FileOutputStream fos = new FileOutputStream(file);
-                 OutputStreamWriter osw = new OutputStreamWriter(fos)) {
-
-                osw.append(etContent.getText());
-                osw.flush();
-                fos.flush();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+        File parent = new File(pathDir);
+        if (!parent.exists() && !parent.mkdir()) {
+            return;
         }
-        else {
-
-            if(parent.mkdir()) return;
-
-            File file = new File(path, etFileName.getText().toString());
-            try (FileOutputStream fos = new FileOutputStream(file, false)) {
-                fos.write(etContent.getText().toString().getBytes());
-                fos.flush();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        File file = new File(pathDir, etFileName.getText().toString());
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(etContent.getText().toString().getBytes());
+            fos.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         onBackPressed();
@@ -202,5 +178,15 @@ public class InsertAndViewActivity extends AppCompatActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void checkPermissionsAndExecute(Runnable action) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (periksaIzinPenyimpanan()) {
+                action.run();
+            }
+        } else {
+            action.run();
+        }
     }
 }

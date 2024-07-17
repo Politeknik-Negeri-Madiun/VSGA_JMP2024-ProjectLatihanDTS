@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     void showListFiles() {
-        String path = Environment.getExternalStorageDirectory() + "/kominfo.proyek1";
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/vsgaproyek1";
         File directory = new File(path);
 
         if (directory.exists()) {
